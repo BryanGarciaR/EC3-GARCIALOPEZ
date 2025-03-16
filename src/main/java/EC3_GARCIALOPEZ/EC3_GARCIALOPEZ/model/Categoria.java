@@ -10,29 +10,17 @@ import jakarta.persistence.*;
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CategoriaID")
-    private Integer id;
+    private Long id;
 
-    @Column(name = "NombreCategoria", nullable = false, length = 50)
     private String nombreCategoria;
-
-    @Column(name = "Descripción")
     private String descripcion;
+    private String imagen;
 
-    public Categoria() {
-    }
-
-    public Categoria(Integer id, String nombreCategoria, String descripcion) {
-        this.id = id;
-        this.nombreCategoria = nombreCategoria;
-        this.descripcion = descripcion;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,5 +38,13 @@ public class Categoria {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

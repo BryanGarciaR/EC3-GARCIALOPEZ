@@ -1,5 +1,5 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.Service;
-
+import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.dto.CategoriaDto;
 import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.exception.ResourceNotFoundException;
 import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model.Categoria;
 import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.Repository.CategoriaRepository;
@@ -20,7 +20,7 @@ public class CategoriaService {
     }
 
     // Método para listar todas las categorías
-    public List<Categoria> listarCategorias() {
+    public List<Categoria> listarCategorias(CategoriaDto categoriaDto) {
         return categoriaRepository.findAll();
     }
 

@@ -1,5 +1,6 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.Controller;
 
+import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.dto.CategoriaDto;
 import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model.Categoria;
 import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.Service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class CategoriaController {
 
     // Operación GET para listar todas las categorías
     @GetMapping
-    public ResponseEntity<List<Categoria>> listarCategorias() {
-        List<Categoria> categorias = categoriaService.listarCategorias();
+    public ResponseEntity<List<Categoria>> listarCategorias(CategoriaDto categoriaDto) {
+        List<Categoria> categorias = categoriaService.listarCategorias(categoriaDto);
         return new ResponseEntity<>(categorias, HttpStatus.OK);
     }
 
