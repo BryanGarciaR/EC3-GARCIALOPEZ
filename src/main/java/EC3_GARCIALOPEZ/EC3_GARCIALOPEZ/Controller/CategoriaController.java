@@ -17,21 +17,18 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
-    // Operación POST para registrar una nueva categoría
     @PostMapping
     public ResponseEntity<Categoria> crearCategoria(@RequestBody Categoria categoria) {
         Categoria nuevaCategoria = categoriaService.crearCategoria(categoria);
         return new ResponseEntity<>(nuevaCategoria, HttpStatus.CREATED);
     }
 
-    // Operación GET para listar todas las categorías
     @GetMapping
     public ResponseEntity<List<Categoria>> listarCategorias(CategoriaDto categoriaDto) {
         List<Categoria> categorias = categoriaService.listarCategorias(categoriaDto);
         return new ResponseEntity<>(categorias, HttpStatus.OK);
     }
 
-    // Operación GET para obtener una categoría por ID
     @GetMapping("/{id}")
     public ResponseEntity<Categoria> obtenerCategoriaPorId(@PathVariable Integer id) {
         Categoria categoria = categoriaService.obtenerCategoriaPorId(id);

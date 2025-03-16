@@ -14,17 +14,14 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    // Método para registrar o crear una nueva categoría
     public Categoria crearCategoria(Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
 
-    // Método para listar todas las categorías
     public List<Categoria> listarCategorias(CategoriaDto categoriaDto) {
         return categoriaRepository.findAll();
     }
 
-    // Método para buscar una categoría por ID
     public Categoria obtenerCategoriaPorId(Integer id) {
         return categoriaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con id: " + id));
