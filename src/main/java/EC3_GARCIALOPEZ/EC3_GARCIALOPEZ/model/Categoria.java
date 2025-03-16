@@ -1,20 +1,24 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model;
 
-
 import jakarta.persistence.*;
-
+import java.util.List;
 
 @Entity
-@Table (name = "Categorías")
-
+@Table(name = "Categorias")
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nombreCategoria", nullable = false, length = 100)
     private String nombreCategoria;
+
     private String descripcion;
     private String imagen;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Libro> libros;
 
     public Long getId() {
         return id;
@@ -46,5 +50,13 @@ public class Categoria {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
 }

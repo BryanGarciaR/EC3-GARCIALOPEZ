@@ -1,36 +1,39 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Libros")
 public class Libro {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "titulo", nullable = false, length = 200)
     private String titulo;
 
-    public Libro(Integer id, String titulo, String autor) {
+    @ManyToOne
+    @JoinColumn(name = "autor_id", nullable = false)
+    @JsonBackReference
+    private Autor autor;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    @JsonBackReference
+    private Categoria categoria;
+
+    public Libro() {
+    }
+
+    public Libro(Integer id, String titulo, Autor autor, Categoria categoria) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
-    }
-
-    private String autor;
-
-    public Libro() {
-
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        this.categoria = categoria;
     }
 
     public Integer getId() {
@@ -41,12 +44,27 @@ public class Libro {
         this.id = id;
     }
 
-    public String getAutor() {
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

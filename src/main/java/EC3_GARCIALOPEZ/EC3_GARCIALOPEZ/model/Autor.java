@@ -1,12 +1,13 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Autores")
-
 public class Autor {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,10 @@ public class Autor {
 
     @Column(name = "Apellido", nullable = false, length = 100)
     private String apellido;
+
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Libro> libros;
 
     public Autor() {
     }
@@ -50,5 +55,13 @@ public class Autor {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
 }
