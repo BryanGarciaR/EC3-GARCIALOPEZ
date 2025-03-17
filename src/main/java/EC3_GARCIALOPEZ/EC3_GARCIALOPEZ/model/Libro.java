@@ -1,12 +1,10 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Libros")
+@Table(name = "libros")
 public class Libro {
 
     @Id
@@ -18,16 +16,15 @@ public class Libro {
 
     @ManyToOne
     @JoinColumn(name = "autor_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference // Evita la serialización infinita con Autor
     private Autor autor;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference // Evita la serialización infinita con Categoria
     private Categoria categoria;
 
-    public Libro() {
-    }
+    public Libro() {}
 
     public Libro(Integer id, String titulo, Autor autor, Categoria categoria) {
         this.id = id;

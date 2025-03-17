@@ -5,6 +5,7 @@ import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model.Autor;
 import EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.Repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class AutorService  {
     private AutorRepository autorRepository;
 
     // Registrar Autor
+
     public Autor crearAutor(Autor autor) {
         return autorRepository.save(autor);
     }

@@ -18,7 +18,7 @@ public class LibroController {
         this.libroService = libroService;
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<Libro> crearLibro(@RequestBody Libro libro) {
         Libro nuevoLibro = libroService.crearLibro(libro);
         return new ResponseEntity<>(nuevoLibro, HttpStatus.CREATED);
