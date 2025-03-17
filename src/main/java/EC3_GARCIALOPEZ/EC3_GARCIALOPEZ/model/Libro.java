@@ -1,6 +1,7 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,12 +17,12 @@ public class Libro {
 
     @ManyToOne
     @JoinColumn(name = "autor_id", nullable = false)
-    @JsonBackReference // Evita la serialización infinita con Autor
+    @JsonIgnoreProperties("libros")
     private Autor autor;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
-    @JsonBackReference // Evita la serialización infinita con Categoria
+    @JsonIgnoreProperties("libros")
     private Categoria categoria;
 
     public Libro() {}

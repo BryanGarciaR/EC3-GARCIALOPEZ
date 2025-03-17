@@ -1,6 +1,6 @@
 package EC3_GARCIALOPEZ.EC3_GARCIALOPEZ.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Autor {
     private String apellido;
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference // Evita la serialización infinita
+    @JsonIgnore
     private List<Libro> libros;
 
     public Autor() {}
